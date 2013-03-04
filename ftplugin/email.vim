@@ -18,5 +18,26 @@ function! MailrSend()
   end
 endfunc
 
+function! CompleteContact(findstart, base)
+  if a:findstart
+    return LocateWordStart()
+  else
+    let contacts = system("grep " . a:base . " ~/.mailr/contacts/*.contacts")
+    return split(contacts, "\n", 0)
+  end
+endfunc
+
+function! LocateWordStart()
+  " locate the start of the word
+  let line = getline('.')
+  let start = col('.') - 1
+  while start > 0 && line[start - 1] =~ '\a'
+    let start -= 1
+  endwhile
+  return start
+endfunc
+
 command! -buffer Draft call MailrSaveDraft()
 command! -buffer Send call MailrSend()
+
+setlocal omnifunc=CompleteContact
