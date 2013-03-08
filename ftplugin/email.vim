@@ -22,7 +22,11 @@ function! CompleteContact(findstart, base)
   if a:findstart
     return LocateWordStart()
   else
-    let contacts = system("grep -h " . a:base . " ~/.mailr/contacts/*.contacts")
+    if getline('.') =~ '^From:'
+      let contacts = system(g:mailr_command . " addresses")
+    else
+      let contacts = system("grep -h " . a:base . " ~/.mailr/contacts/*.contacts")
+    endif
     return split(contacts, "\n", 0)
   end
 endfunc

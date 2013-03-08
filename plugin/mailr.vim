@@ -7,6 +7,8 @@ function! MailrCompose()
   call setline(2, "To: ")
   call setline(3, "Subject: ")
   call setline(4, "========================")
+  exec "normal ggA "
+  startinsert
 endfunc
 
 command! Compose call MailrCompose()
