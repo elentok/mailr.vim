@@ -60,3 +60,7 @@ command! -buffer Send call MailrSend()
 command! -buffer Preview call MailrPreview()
 
 setlocal omnifunc=CompleteContact
+
+nnoremap <buffer> <Leader>mp :Preview<cr>
+nnoremap <buffer> <Leader>ms :Send<cr>
+nnoremap <buffer> <Leader>md Draft<cr>
