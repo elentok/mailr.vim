@@ -20,6 +20,18 @@ function! MailrSend()
   end
 endfunc
 
+
+function! MailrPreview()
+  if bufname('%') == ''
+    Draft
+  else
+    w
+  end
+  exec "silent !" . g:mailr_command . " preview " . expand('%')
+  exec "silent !" . g:mailr_preview . " /tmp/mail-preview.html"
+  redraw!
+endfunc
+
 function! CompleteContact(findstart, base)
   if a:findstart
     return LocateWordStart()
@@ -45,5 +57,6 @@ endfunc
 
 command! -buffer Draft call MailrSaveDraft()
 command! -buffer Send call MailrSend()
+command! -buffer Preview call MailrPreview()
 
 setlocal omnifunc=CompleteContact

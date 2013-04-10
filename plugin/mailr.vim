@@ -1,4 +1,5 @@
 let g:mailr_command=expand("~/projects/mailr/bin/mailr")
+let g:mailr_preview="qlmanage -p"
 
 function! MailrCompose()
   new
