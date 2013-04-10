@@ -13,6 +13,8 @@ function! MailrSend()
   if input("Send? [yes/no] ") =~ '^\(y\|ye\|yes\)$'
     if bufname('%') == ''
       Draft
+    else
+      w
     end
     exec "!" . g:mailr_command . " send " . expand('%')
   end
